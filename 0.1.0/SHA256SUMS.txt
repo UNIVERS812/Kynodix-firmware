@@ -1,0 +1,2 @@
+e32fc8e3a01eb90f8921ac4d284c4be7734fcfaeea91fb1ff394b0c4e9e3f035  sensora-air_esp32-v0.1.0.bin
+3b390866d254d3441d46dd0105d906201c1045cfcaf6f2951cc9bbe851920e9b  sensora-weather_esp32-v0.1.0.bin
