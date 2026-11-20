@@ -1,13 +1,13 @@
-# Binaires OTA Sensora
+# Binaires OTA Kynodix IoT
 
 Dépôt **public** contenant uniquement les binaires de firmware (`*.bin`) servis
-aux boîtiers ESP32 du parc Sensora. Il est séparé du dépôt privé
-[`sensora-iot`](https://github.com/UNIVERS812/sensora-iot) parce que les assets
+aux boîtiers ESP32 du parc Kynodix IoT. Il est séparé du dépôt privé
+[`Kynodix-IOT`](https://github.com/UNIVERS812/Kynodix-IOT) parce que les assets
 d'une release GitHub **privée** ne sont pas téléchargeables anonymement : un
 ESP32 n'a pas de jeton d'authentification.
 
 Le code source, le contrat d'interface et la documentation vivent dans
-`sensora-iot`. Ici, il n'y a que des artefacts.
+`Kynodix-IOT`. Ici, il n'y a que des artefacts.
 
 ## Règle : un produit = un binaire
 
@@ -23,7 +23,7 @@ que le manifeste reçu annonce bien son `product_key` et son `board`.
 ## Arborescence
 
 ```text
-sensora-firmware/
+Kynodix-firmware/
 ├── README.md
 └── <version>/
     ├── sensora-weather_esp32-v<version>.bin
@@ -33,7 +33,7 @@ sensora-firmware/
 
 ## Publier une version
 
-Depuis le dépôt `sensora-iot` :
+Depuis le dépôt `Kynodix-IOT` :
 
 ```powershell
 cd firmware
@@ -47,11 +47,11 @@ taille et le SHA-256 de chaque binaire. Puis :
 
 ```powershell
 $version = "1.2.0"
-New-Item -ItemType Directory -Force "../sensora-firmware/$version" | Out-Null
-Copy-Item "dist/*.bin" "../sensora-firmware/$version/"
-Get-FileHash "../sensora-firmware/$version/*.bin" -Algorithm SHA256 |
+New-Item -ItemType Directory -Force "../Kynodix-firmware/$version" | Out-Null
+Copy-Item "dist/*.bin" "../Kynodix-firmware/$version/"
+Get-FileHash "../Kynodix-firmware/$version/*.bin" -Algorithm SHA256 |
     ForEach-Object { "$($_.Hash.ToLower())  $(Split-Path $_.Path -Leaf)" } |
-    Set-Content "../sensora-firmware/$version/SHA256SUMS.txt"
+    Set-Content "../Kynodix-firmware/$version/SHA256SUMS.txt"
 ```
 
 Committer, pousser, puis créer le tag `fw-v<version>` :
@@ -67,7 +67,7 @@ git push origin main --tags
 Dans `FirmwareRelease.file_url` (admin → Firmware OTA) :
 
 ```text
-https://raw.githubusercontent.com/UNIVERS812/sensora-firmware/main/<version>/sensora-<env>-v<version>.bin
+https://raw.githubusercontent.com/UNIVERS812/Kynodix-firmware/main/<version>/sensora-<env>-v<version>.bin
 ```
 
 Renseigner également `sha256`, `size_bytes`, `channel` et le `DeviceType`
